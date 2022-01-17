@@ -52,17 +52,17 @@ namespace Rythm.Extensions
             CurrentTrack--;
             return QueueTrack.Skip(CurrentTrack);
         }
-        public static async Task Conn_PlaybackFinished(LavalinkGuildConnection sender, TrackFinishEventArgs e)
+        public static void Conn_PlaybackFinished(LavalinkGuildConnection sender, TrackFinishEventArgs e)
         {
             {
                 if (IsLoop)
                 {
-                    var Music = QueueTrack[0];
+                    var Music = QueueTrack.FirstOrDefault();
                     QueueTrackDellete(Music);
                     QueueTrackAdd(Music);
                 }
                 else{
-                    var Music = QueueTrack[0];
+                    var Music = QueueTrack.FirstOrDefault();
                     QueueTrackDellete(Music);
                 }
             }
